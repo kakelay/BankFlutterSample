@@ -43,6 +43,8 @@ class BankingHomePage extends StatelessWidget {
                 _buildQuickActions(),
                 _buildGovernmentServicesSection(),
                 _buildWebTabView(), // Web Tab View (Advertisements)
+                _buildGroupWidgetMiniApp(),
+                _buildGroupTheme()
               ],
             ),
           ),
@@ -130,7 +132,6 @@ class BankingHomePage extends StatelessWidget {
                       icon: Icon(Icons.arrow_downward, size: 16),
                       label: Text('Receive Money'),
                       style: ElevatedButton.styleFrom(
-                        // primary: Colors.greenAccent,
                         backgroundColor: Colors.greenAccent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -144,7 +145,6 @@ class BankingHomePage extends StatelessWidget {
                       icon: Icon(Icons.arrow_upward, size: 16),
                       label: Text('Send Money'),
                       style: ElevatedButton.styleFrom(
-                        // primary: Colors.redAccent,
                         backgroundColor: Colors.redAccent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -171,29 +171,44 @@ class BankingHomePage extends StatelessWidget {
         crossAxisSpacing: 15,
         mainAxisSpacing: 15,
         children: [
-          _buildQuickActionItem(Icons.account_balance_wallet, 'Accounts'),
-          _buildQuickActionItem(Icons.credit_card, 'Cards'),
-          _buildQuickActionItem(Icons.star, 'Favorites'),
-          _buildQuickActionItem(Icons.payment, 'Payments'),
-          _buildQuickActionItem(Icons.sync_alt, 'Transfers'),
-          _buildQuickActionItem(Icons.account_balance, 'Government S.'),
-          _buildQuickActionItem(Icons.account_balance_wallet, 'E-cash'),
-          _buildQuickActionItem(Icons.miscellaneous_services, 'Services'),
-          _buildQuickActionItem(Icons.qr_code, 'ABA Scan'),
-          _buildQuickActionItem(Icons.person_add, 'Invite Friend'),
-          _buildQuickActionItem(Icons.add_circle, 'New Account'),
-          _buildQuickActionItem(Icons.more_horiz, 'More'),
+          _buildCustomIcon(Icons.account_balance_wallet, 'Accounts'),
+          _buildCustomIcon(Icons.credit_card, 'Cards'),
+          _buildCustomIcon(Icons.star, 'Favorites'),
+          _buildCustomIcon(Icons.payment, 'Payments'),
+          _buildCustomIcon(Icons.sync_alt, 'Transfers'),
+          _buildCustomIcon(Icons.account_balance, 'Government S.'),
+          _buildCustomIcon(Icons.account_balance_wallet, 'E-cash'),
+          _buildCustomIcon(Icons.miscellaneous_services, 'Services'),
+          _buildCustomIcon(Icons.qr_code, 'ABA Scan'),
+          _buildCustomIcon(Icons.person_add, 'Invite Friend'),
+          _buildCustomIcon(Icons.add_circle, 'New Account'),
+          _buildCustomIcon(Icons.more_horiz, 'More'),
         ],
       ),
     );
   }
 
-  Widget _buildQuickActionItem(IconData icon, String label) {
+  Widget _buildCustomIcon(IconData icon, String label) {
     return Column(
       children: [
-        CircleAvatar(
-          radius: 30,
-          backgroundColor: Colors.white,
+        Container(
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.white, Colors.grey[300]!],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 5,
+                offset: Offset(2, 2),
+              ),
+            ],
+          ),
           child: Icon(icon, size: 28, color: Color(0xFF0A74DA)),
         ),
         SizedBox(height: 8),
@@ -232,7 +247,7 @@ class BankingHomePage extends StatelessWidget {
             ],
           ),
           SizedBox(height: 15),
-          Container(
+          SizedBox(
             height: 100,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -257,12 +272,12 @@ class BankingHomePage extends StatelessWidget {
 
   Widget _buildWebTabView() {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
+      padding: EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 12),
             child: Text(
               'Advertisements',
               style: TextStyle(
@@ -272,7 +287,7 @@ class BankingHomePage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 15),
-          Container(
+          SizedBox(
             height: 150,
             child: ListView(
               scrollDirection: Axis.horizontal,
@@ -301,6 +316,124 @@ class BankingHomePage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildGroupWidgetMiniApp() {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              '_buildGroupWidgetMiniApp',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          SizedBox(height: 15),
+          Container(
+            height: 120, // Adjusted height for padding and background
+            decoration: BoxDecoration(
+              color: Color(0xFFECEFF1), // Light grey background
+              borderRadius: BorderRadius.circular(15), // Rounded corners
+            ),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 5, // Number of widgets
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  child: Container(
+                    width: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 10,
+                          offset: Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        'MiniApp ${index + 1}',
+                        style: TextStyle(
+                          color: Color(0xFF0A74DA),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGroupTheme() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            '_buildGroupTheme',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        SizedBox(height: 15),
+        SizedBox(
+          height: 180, // Adjusted height for padding and background
+           
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 5, // Number of widgets
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                child: Container(
+                  width: 120,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Theme${index + 1}',
+                      style: TextStyle(
+                        color: Color(0xFF0A74DA),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }
