@@ -328,7 +328,7 @@ class BankingHomePage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              '_buildGroupWidgetMiniApp',
+              'Group Widget Mini App',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -338,7 +338,7 @@ class BankingHomePage extends StatelessWidget {
           ),
           SizedBox(height: 15),
           Container(
-            height: 120, // Adjusted height for padding and background
+            height: 160, // Adjusted height for padding and background
             decoration: BoxDecoration(
               color: Color(0xFFECEFF1), // Light grey background
               borderRadius: BorderRadius.circular(15), // Rounded corners
@@ -349,28 +349,47 @@ class BankingHomePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: Container(
-                    width: 120,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 10,
-                          offset: Offset(0, 5),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 80, // Adjusted width for a circular shape
+                        height: 80, // Ensure height matches width for a circle
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 10,
+                              offset: Offset(0, 5),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        'MiniApp ${index + 1}',
+                        child: Center(
+                          child: Text(
+                            '${index + 1}', // Display MiniApp index inside the circle
+                            style: TextStyle(
+                              color: Color(0xFF0A74DA),
+                              fontWeight: FontWeight.bold,
+                              fontSize:
+                                  18, // Adjusted font size for better visibility
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Text(
+                        'ក្រសួង${index + 1}', // Display MiniApp index inside the circle
                         style: TextStyle(
                           color: Color(0xFF0A74DA),
                           fontWeight: FontWeight.bold,
+                          fontSize:
+                              18, // Adjusted font size for better visibility
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 );
               },
@@ -399,7 +418,7 @@ class BankingHomePage extends StatelessWidget {
         SizedBox(height: 15),
         SizedBox(
           height: 180, // Adjusted height for padding and background
-           
+
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 5, // Number of widgets
